@@ -93,3 +93,17 @@ Sebagai contoh, jika IP address server Samba adalah 192.168.43.49, maka alamat y
 Setelah itu, folder sharing akan terbuka dan dapat digunakan untuk mengakses, menyalin, maupun mengelola file sesuai dengan hak akses yang diberikan.
 
 ![File-Sharing](https://raw.githubusercontent.com/Kaguai10/FileSharing_dengan_Samba/refs/heads/main/Samba.png "File-Sharing")
+
+Kalian juga dapat mencoba tools Otomatis yang saya buat, dengan cara seperti berikut:
+```bash
+git clone https://github.com/Kaguai10/FileSharing_dengan_Samba.git
+
+cd FileSharing_dengan_Samba
+
+chmod +x run.sh
+
+#lalu Jalankan run.sh dan bisa gunakan --help untuk melihat opsi yang tersedia
+#contoh menjalankannya
+
+sudo ./run.sh --path /home/kaguai/folder_sharing --user kaguai:passw0rd --no-guest
+```
