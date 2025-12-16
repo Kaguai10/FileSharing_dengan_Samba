@@ -59,7 +59,7 @@ Agar folder sharing hanya bisa diakses oleh user tertentu, kita cukup menambahka
 path = /home/sharing_samba
 browsable = yes
 writeable = yes
-guest ok = yes
+guest ok = no
 read only = no
 valid users = sambauser
 ```
