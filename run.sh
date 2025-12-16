@@ -10,12 +10,13 @@ help() {
     echo "  --user <user:password>   Tambahkan user Samba (OPTIONAL)"
     echo "  --guest                  Izinkan akses anonim (tanpa login)"
     echo "  --no-guest               Nonaktifkan akses anonim (default)"
+    echo "  -r                       Read-only access"
     echo "  -h, --help               Show this help"
     echo ""
     echo "Examples:"
     echo "  sudo $0 --path /home/share"
     echo "  sudo $0 --path /home/share --guest"
-    echo "  sudo $0 --path /home/share --name 'Public Share'"
+    echo "  sudo $0 --path /home/share --name 'Public Share' -r"
     echo "  sudo $0 --path /home/share --user sambauser:12345"
 }
 
@@ -26,6 +27,7 @@ fi
 
 SHARE_NAME="File Sharing"
 GUEST_ACCESS="yes"
+READ_ONLY="no"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -47,6 +49,10 @@ while [ $# -gt 0 ]; do
             ;;
         --no-guest)
             GUEST_ACCESS="no"
+            shift
+            ;;
+        -r)
+            READ_ONLY='yes'
             shift
             ;;
         -h|--help)
@@ -85,7 +91,7 @@ path = ${SHARE_PATH}
 browsable = yes
 writeable = yes
 guest ok = ${GUEST_ACCESS}
-read only = no"
+read only = ${READ_ONLY}"
 
 if [ -n "$SAMBA_USER" ]; then
     CONFIG="${CONFIG}
@@ -120,3 +126,4 @@ echo
 echo "[+] Samba share ready!"
 echo "Windows access: \\\\$IP\\$SHARE_NAME"
 echo "Guest access: $GUEST_ACCESS"
+echo "READ_ONLY: $READ_ONLY"
